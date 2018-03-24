@@ -11,9 +11,12 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.AnnotationTypeDeclaration;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.EnumDeclaration;
 import org.eclipse.jdt.core.dom.PrimitiveType;
 import org.eclipse.jdt.core.dom.SimpleName;
+import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 public class TypeCounter 
 {
@@ -104,6 +107,45 @@ public class TypeCounter
 						referenceCount += 1;
 					}
 					
+					return super.visit(node);
+				}
+				
+				
+				
+				
+				@Override public boolean visit(TypeDeclaration node) 
+				{
+					String nodeString = node.getName().getFullyQualifiedName();
+					
+					// counter for declaration type of interest
+					if (typeName.equals(nodeString)) {
+						declarationCount += 1;
+					}
+
+					return super.visit(node);
+				}
+				
+				@Override public boolean visit(EnumDeclaration node) 
+				{
+					String nodeString = node.getName().getFullyQualifiedName();
+					
+					// counter for declaration type of interest
+					if (typeName.equals(nodeString)) {
+						declarationCount += 1;
+					}
+
+					return super.visit(node);
+				}
+				
+				@Override public boolean visit(AnnotationTypeDeclaration node) 
+				{
+					String nodeString = node.getName().getFullyQualifiedName();
+					
+					// counter for declaration type of interest
+					if (typeName.equals(nodeString)) {
+						declarationCount += 1;
+					}
+
 					return super.visit(node);
 				}
 			});
