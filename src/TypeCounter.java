@@ -12,6 +12,7 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.PrimitiveType;
 import org.eclipse.jdt.core.dom.SimpleName;
 
 public class TypeCounter 
@@ -42,6 +43,9 @@ public class TypeCounter
 	
 	public void run()
 	{
+		this.declarationCount = 0;
+		this.referenceCount = 0;
+		
 		try {
 			Files.walk(Paths.get(directoryPath))
 			.filter(Files::isRegularFile)
@@ -51,6 +55,8 @@ public class TypeCounter
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} 
+		
+		System.out.println(this.typeName + ". Declarations found: " + this.declarationCount + "; references found: " + this.referenceCount + "."); 
 	}
 	
 	private void parse(Path filePath)
@@ -81,7 +87,22 @@ public class TypeCounter
 			cu.accept(new ASTVisitor() {
 				@Override public boolean visit(SimpleName node) 
 				{
-					System.out.println(node.getFullyQualifiedName());
+					String nodeString = node.getFullyQualifiedName();
+					
+					if (typeName.equals(nodeString)) {
+						referenceCount += 1;
+					}
+					
+					return super.visit(node);
+				}
+				
+				@Override public boolean visit(PrimitiveType node)
+				{
+					String nodeString = node.getPrimitiveTypeCode().toString();
+					
+					if(typeName.equals(nodeString)){
+						referenceCount += 1;
+					}
 					
 					return super.visit(node);
 				}

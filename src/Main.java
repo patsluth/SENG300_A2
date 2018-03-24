@@ -20,7 +20,7 @@ public class Main
 		}
 		
 		directoryPath = "/Volumes/Malish/Development/eclipse_workspace/SENG300/src";
-		typeName = "test.T1.T2";
+		typeName = "T2";
 //		else {
 //			System.out.println("Usage: java Main <directoryPath> <typeName>");
 //			return; 
@@ -29,9 +29,6 @@ public class Main
 
 		TypeCounter typeCounter = new TypeCounter(directoryPath, typeName);
 		typeCounter.run();
-//		if (parse(directoryPath, typeName)) 
-//			System.out.println(typeName + ". Declarations found: " + declarationCount + "; references found: " + referenceCount + "."); 
-
 	}
 	
 	
