@@ -20,7 +20,7 @@ import org.eclipse.jdt.core.dom.TypeDeclaration;
 
 public class TypeCounter 
 {
-	private String directoryPath;
+	private String directoryPath = null;
 	private String typeName = null;
 	
 	private ASTParser parser = null;
@@ -34,10 +34,10 @@ public class TypeCounter
 	public TypeCounter(String directoryPath, String typeName)
 	{
 		File directoryFile = new File(directoryPath);
-		if (!directoryFile.isDirectory()) {
-			System.out.println("Invalid directory.");
-			return;
-		}
+//		if (!directoryFile.isDirectory()) {
+//			System.out.println("Invalid directory.");
+//			return;
+//		}
 		
 		this.parser = ASTParser.newParser(AST.JLS8);
 		this.directoryPath = directoryPath;
@@ -49,15 +49,21 @@ public class TypeCounter
 		this.declarationCount = 0;
 		this.referenceCount = 0;
 		
-		try {
-			Files.walk(Paths.get(directoryPath))
-			.filter(Files::isRegularFile)
-			.forEach( (filePath) -> {
-				this.parse(filePath);
-	        });
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		} 
+		File directoryFile = new File(this.directoryPath);
+		
+		if (directoryFile.isDirectory()) {
+			try {
+				Files.walk(Paths.get(this.directoryPath))
+				.filter(Files::isRegularFile)
+				.forEach( (filePath) -> {
+					this.parse(filePath);
+		        });
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} 
+		} else {
+			this.parse(directoryFile.toPath());
+		}
 		
 		System.out.println(this.typeName + ". Declarations found: " + this.declarationCount + "; references found: " + this.referenceCount + "."); 
 	}
