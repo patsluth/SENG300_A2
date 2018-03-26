@@ -14,6 +14,7 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.AnnotationTypeDeclaration;
+import org.eclipse.jdt.core.dom.ClassInstanceCreation;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.EnumDeclaration;
 import org.eclipse.jdt.core.dom.PrimitiveType;
@@ -34,8 +35,7 @@ public class TypeCounter {
 	private ASTParser parser = null;
 	private int declarationCount = 0;
 	private int referenceCount = 0;
-	
-	
+	private int classDeclarationCount = 0;
 	
 	
 	
@@ -56,6 +56,7 @@ public class TypeCounter {
 	{
 		this.declarationCount = 0;
 		this.referenceCount = 0;
+		this.classDeclarationCount = 0;
 		
 		File directoryFile = new File(this.directoryPath);
 		
@@ -161,6 +162,20 @@ public class TypeCounter {
 					}
 
 					return super.visit(node);
+				}
+				
+				@Override public boolean visit(ClassInstanceCreation node) {
+					
+					@SuppressWarnings("deprecation")
+					String nodeString = node.getName().toString();
+					//System.out.println("CLASS " + nodeString);
+					
+					classDeclarationCount += 1;
+					
+					//System.out.println(nodeString + ". Declarations found: " + classDeclarationCount + "."); 
+					
+					return super.visit(node);
+					
 				}
 			});
 			

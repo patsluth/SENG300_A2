@@ -15,9 +15,8 @@ public class Main {
 			typeName = args[1];
 		}
 
-//		directoryPath = "/Volumes/Malish/Development/eclipse_workspace/SENG300/jars/commons-lang-2.5.jar";
-//		directoryPath = "/Volumes/Malish/Development/eclipse_workspace/SENG300/src";
-		directoryPath = "C:\\Users\\Cynthia\\Downloads\\SENG300project\\SENG300project\\SENG300project\\src\\typeCounter";
+		directoryPath = "/Volumes/Malish/Development/eclipse_workspace/SENG300/jars/commons-lang-2.5.jar";
+
 		typeName = "String";
 //		else {
 //			System.out.println("Usage: java Main <directoryPath> <typeName>");
