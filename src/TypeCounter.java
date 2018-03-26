@@ -197,6 +197,18 @@ public class TypeCounter {
 	
 	    return source;
 	}
+		public int getDeclarationCount() {
+		return this.declarationCount;
+	}
+	public int getReferenceCount() {
+		return this.referenceCount;
+	}
+	public String getType() {
+		return this.typeName;
+	}
+	public String getPath() {
+		return this.directoryPath;
+	}
 }
 
 
