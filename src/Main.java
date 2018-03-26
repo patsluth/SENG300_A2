@@ -19,7 +19,7 @@ public class Main {
 
 		
 		else {
-			System.out.println("Usage: java Main <directoryPath> <typeName>");
+			System.out.println("Usage: java Main <directoryPath> or Usage: java Main <JAR> ");
 			return; 
 		}
 		
