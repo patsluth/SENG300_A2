@@ -10,18 +10,20 @@ public class Main {
 		String directoryPath;
 		String typeName;
 		
-		if (args.length == 2) {
+		if (args.length == 1) {
 			directoryPath = args[0];
-			typeName = args[1];
+			//typeName = args[1];
 		}
 
-		directoryPath = "/Volumes/Malish/Development/eclipse_workspace/SENG300/jars/commons-lang-2.5.jar";
+		//directoryPath = "/Volumes/Malish/Development/eclipse_workspace/SENG300/jars/commons-lang-2.5.jar";
 
+		
+		else {
+			System.out.println("Usage: java Main <directoryPath> <typeName>");
+			return; 
+		}
+		
 		typeName = "String";
-//		else {
-//			System.out.println("Usage: java Main <directoryPath> <typeName>");
-//			return; 
-//		}
 		
 
 		TypeCounter typeCounter = new TypeCounter(directoryPath, typeName);
