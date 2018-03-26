@@ -1,3 +1,5 @@
+package projectIteration1;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,8 +20,14 @@ import org.eclipse.jdt.core.dom.PrimitiveType;
 import org.eclipse.jdt.core.dom.SimpleName;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
-public class TypeCounter 
-{
+/**
+ * Class for counting declarations and references
+ * for a specified type declaration
+ * @author Elvin
+ *
+ */
+public class TypeCounter {
+	
 	private String directoryPath = null;
 	private String typeName = null;
 	
@@ -39,7 +47,7 @@ public class TypeCounter
 //			return;
 //		}
 		
-		this.parser = ASTParser.newParser(AST.JLS8);
+		this.parser = ASTParser.newParser(AST.JLS2);
 		this.directoryPath = directoryPath;
 		this.typeName = typeName;
 	}
@@ -83,7 +91,7 @@ public class TypeCounter
 		try {	
 			String source = readFile(file);
 			
-			System.out.println("Reading file: " + file.getPath());
+			//System.out.println("Reading file: " + file.getPath());
 
 			this.parser.setSource(source.toCharArray());
 			
@@ -175,7 +183,5 @@ public class TypeCounter
 	    return source;
 	}
 }
-
-
 
 

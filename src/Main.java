@@ -1,14 +1,10 @@
-// 	SENG 300 Group 14 - Project #1
-//	Pat Sluth : 30032750
-//	Preston : XXXXXXX
-//	Aaron Hornby: 10176084
+package projectIteration1;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.FieldDeclaration;
 import org.eclipse.jdt.core.dom.Type;
 
-public class Main 
-{	
+public class Main {
 	public static void main(String[] args) 
 	{	
 		String directoryPath;
@@ -19,9 +15,10 @@ public class Main
 			typeName = args[1];
 		}
 
-		directoryPath = "/Volumes/Malish/Development/eclipse_workspace/SENG300/jars/commons-lang-2.5.jar";
+//		directoryPath = "/Volumes/Malish/Development/eclipse_workspace/SENG300/jars/commons-lang-2.5.jar";
 //		directoryPath = "/Volumes/Malish/Development/eclipse_workspace/SENG300/src";
-		typeName = "T2";
+		directoryPath = "C:\\Users\\Cynthia\\Downloads\\SENG300project\\SENG300project\\SENG300project\\src\\typeCounter";
+		typeName = "String";
 //		else {
 //			System.out.println("Usage: java Main <directoryPath> <typeName>");
 //			return; 
@@ -30,6 +27,31 @@ public class Main
 
 		TypeCounter typeCounter = new TypeCounter(directoryPath, typeName);
 		typeCounter.run();
+		
+		typeName = "byte";
+		TypeCounter typeCounter2 = new TypeCounter(directoryPath, typeName);
+		typeCounter2.run();
+		typeName = "short";
+		TypeCounter typeCounter3 = new TypeCounter(directoryPath, typeName);
+		typeCounter3.run();
+		typeName = "int";
+		TypeCounter typeCounter4 = new TypeCounter(directoryPath, typeName);
+		typeCounter4.run();
+		typeName = "long";
+		TypeCounter typeCounter5 = new TypeCounter(directoryPath, typeName);
+		typeCounter5.run();
+		typeName = "float";
+		TypeCounter typeCounter6 = new TypeCounter(directoryPath, typeName);
+		typeCounter6.run();
+		typeName = "boolean";
+		TypeCounter typeCounter7 = new TypeCounter(directoryPath, typeName);
+		typeCounter7.run();
+		typeName = "char";
+		TypeCounter typeCounter8 = new TypeCounter(directoryPath, typeName);
+		typeCounter8.run();
+		typeName = "boolean";
+		
+			
 	}
 	
 	
